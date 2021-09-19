@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+        <import type="com.example.nagwatask.main.dataclass.Video"/>
+        <variable
+            name="videoItem"
+            type="Video" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        >
+
+
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="8dp"
+                android:padding="5dp"
+                android:src="@android:drawable/stat_sys_download_done"
+                app:layout_constraintBottom_toBottomOf="@id/line1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+
+
+                app:tint="@color/colorAccent" />
+
+            <TextView
+                android:id="@+id/name"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+
+                android:text="@{videoItem.name}"
+                app:layout_constraintBottom_toTopOf="@+id/progress"
+                app:layout_constraintStart_toEndOf="@id/img"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/progress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:padding="8dp"
+                android:layout_height="wrap_content"
+                android:max="100"
+                android:progress='@{videoItem.progress}'
+                app:layout_constraintBottom_toTopOf="@+id/url"
+                android:visibility='@{videoItem.progress>0?View.VISIBLE:View.GONE}'
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/name"
+                app:layout_constraintStart_toEndOf="@+id/img" />
+
+            <TextView
+                android:id="@+id/url"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@{videoItem.url}"
+                app:layout_constraintBottom_toTopOf="@+id/status"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/name"
+                app:layout_constraintTop_toBottomOf="@+id/progress" />
+
+            <TextView
+                android:id="@+id/status"
+                style="@style/TextAppearance.AppCompat.Caption"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:padding="8dp"
+                android:text="@{videoItem.state}"
+                app:layout_constraintBottom_toTopOf="@id/line1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/img"
+                app:layout_constraintTop_toBottomOf="@id/url" />
+
+            <View
+                android:id="@+id/line1"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="#606060"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/status" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</layout>
